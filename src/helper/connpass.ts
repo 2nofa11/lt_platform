@@ -12,7 +12,7 @@ export const eventListFromKeyword = async (searchParam: SearchParam) => {
   for (const key in searchParam) {
     reqParamArr.push(`${key}=${searchParam[key]}`);
   }
-  const reqParam = reqParamArr.join("&");
+  const reqParam = encodeURI(reqParamArr.join("&"));
   console.log(reqParam);
 
   // 検索実行
