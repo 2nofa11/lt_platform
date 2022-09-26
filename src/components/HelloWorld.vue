@@ -19,15 +19,16 @@
       <v-col class="mb-2" cols="12">
         <h2 class="headline font-weight-bold mb-5">できること</h2>
         <v-row justify="center">
-          <a
+          <router-link
             v-for="(link, i) in importantLinks"
+            :to="link.page"
             :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
+            v-slot="{ navigate }"
           >
-            {{ link.text }}
-          </a>
+            <span @click="navigate" role="link" keyword="hoge">{{
+              link.text
+            }}</span>
+          </router-link>
         </v-row>
       </v-col>
 
@@ -59,8 +60,8 @@ export default defineComponent({
     return {
       importantLinks: [
         {
-          text: "ConnpasのLT一覧表示",
-          href: "https://github.com/vuetifyjs/vuetify-loader/tree/next",
+          text: "ConnpasのLT会一覧",
+          page: "/about/LT",
         },
       ],
       whatsNext: [
