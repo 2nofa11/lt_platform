@@ -5,6 +5,10 @@ export type SearchParam = {
   [key: string]: string | number;
 };
 
+axios.defaults.headers.common["Content-Type"] =
+  "application/x-www-form-urlencoded";
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const eventListFromKeyword = async (searchParam: SearchParam) => {
   // パラメータをURLように整形
@@ -14,8 +18,12 @@ export const eventListFromKeyword = async (searchParam: SearchParam) => {
   }
   const reqParam = encodeURI(reqParamArr.join("&"));
   console.log(reqParam);
-
-  // 検索実行
-  const res = await axios.get(`https://connpass.com/api/v1/event/?${reqParam}`);
+  const res = await axios.get(
+    `https://connpass.com/api/v1/event/?${reqParam}`,
+    { adapter: jsonpAdapter }
+  );
   return res.data;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const jsonpAdapter = require("axios-jsonp");
