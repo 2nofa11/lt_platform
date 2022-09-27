@@ -1,11 +1,14 @@
 <template>
   <div>
     <h1>This is an about page{{ msg }}</h1>
+    <v-list-item v-for="(event, index) in userProf" :key="index">
+      {{ event.event_id }}
+    </v-list-item>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 import { eventListFromKeyword, SearchParam } from "@/helper/connpass";
 
 export default defineComponent({
@@ -15,7 +18,7 @@ export default defineComponent({
       post: null,
       error: null,
       msg: this.$route.params.keyword,
-      userProf: Object,
+      userProf: reactive({}) as any,
     };
   },
   watch: {
@@ -31,8 +34,9 @@ export default defineComponent({
       // 試しにAPIを取得する
       const searchParam: SearchParam = { keyword: "LT会", count: 10 };
       eventListFromKeyword(searchParam).then((res) => {
-        console.log(res.events);
-        // for (const [id, val] of Object.entries(res)) {        }
+        for (const [id, val] of Object.entries(res.events)) {
+          this.userProf[id] = val;
+        }
       });
       this.msg = this.$route.params.keyword;
       this.loading = false;
