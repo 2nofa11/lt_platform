@@ -21,7 +21,7 @@
         <v-row justify="center">
           <router-link
             v-for="(link, i) in importantLinks"
-            :to="link.page"
+            :to="`${link.page}${link.props}`"
             :key="i"
             v-slot="{ navigate }"
           >
@@ -61,7 +61,8 @@ export default defineComponent({
       importantLinks: [
         {
           text: "ConnpasのLT会一覧",
-          page: "/about/LT",
+          page: "/about/",
+          props: "マウントなしのLT会",
         },
       ],
       whatsNext: [
