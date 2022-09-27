@@ -17,7 +17,7 @@
         </p>
       </v-col>
       <v-col class="mb-2" cols="12">
-        <h2 class="headline font-weight-bold mb-5">できること</h2>
+        <h2 class="headline font-weight-bold mb-5">What you can do</h2>
         <v-row justify="center">
           <router-link
             v-for="(link, i) in importantLinks"
