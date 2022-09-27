@@ -8,7 +8,7 @@
     <v-main>
       <v-container>
         <v-row>
-          <v-col cols="2"><SideBar /> </v-col>
+          <v-col cols="2"><sidebar-content /> </v-col>
           <v-col>
             <v-sheet min-height="70vh" rounded="lg"> <router-view /></v-sheet>
           </v-col>
@@ -20,12 +20,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import SideBar from "@/components/SideBar.vue";
+import SidebarContent from "@/components/SidebarContent.vue";
 import router from "./router";
 
 export default defineComponent({
   name: "App",
-  components: { SideBar },
+  components: { SidebarContent },
   data() {
     return {};
   },

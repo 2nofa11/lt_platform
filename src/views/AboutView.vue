@@ -20,28 +20,34 @@ export default defineComponent({
       loading: false,
       post: null,
       error: null,
-      msg: this.$route.params.keyword,
       events: reactive({}) as any,
     };
   },
-  watch: {
-    $route: "fetchData",
+  computed: {
+    msg: function () {
+      return this.$route.params.keyword as string;
+    },
   },
-  created() {
-    this.fetchData();
+  watch: {
+    msg: function (oldKey: string, newKey: string) {
+      this.fetchData(oldKey);
+    },
+  },
+  mounted() {
+    this.fetchData(this.msg);
   },
   methods: {
-    fetchData() {
+    fetchData(keyword: string) {
+      console.log(keyword);
       this.error = this.post = null;
       this.loading = true;
       // 試しにAPIを取得する
-      const searchParam: SearchParam = { keyword: "LT会", count: 10 };
+      const searchParam: SearchParam = { keyword: keyword, count: 10 };
       eventListFromKeyword(searchParam).then((res) => {
         for (const [id, val] of Object.entries(res.events)) {
           this.events[id] = val;
         }
       });
-      this.msg = this.$route.params.keyword;
       this.loading = false;
     },
   },
