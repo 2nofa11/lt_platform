@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app flat>
-      <v-container>
-        <v-btn @click="backToHome"> HOME </v-btn>
-      </v-container>
-    </v-app-bar>
+    <appbar-content />
     <v-main>
       <v-container>
         <v-row>
@@ -20,25 +16,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import AppbarContent from "@/components/AppbarContent.vue";
 import SidebarContent from "@/components/SidebarContent.vue";
-import router from "./router";
 
 export default defineComponent({
   name: "App",
-  components: { SidebarContent },
-  data() {
-    return {};
-  },
-  methods: {
-    backToHome: function () {
-      router.push("/");
-    },
-    goToAbout: function (name: string, keyword: string) {
-      router.push({
-        name: name,
-        params: { keyword: keyword },
-      });
-    },
-  },
+  components: { SidebarContent, AppbarContent },
 });
 </script>

@@ -54,8 +54,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "HelloWorld",
-
   data() {
     return {
       importantLinks: [
