@@ -7,7 +7,7 @@
           <event-card
             :title="event.title"
             :address="event.address"
-            :started_at="event.started_at"
+            :started_at="isoToJpnDate(event.started_at)"
             :subtitle="event.catch"
           ></event-card>
         </v-col>
@@ -57,6 +57,17 @@ export default defineComponent({
         }
       });
       this.loading = false;
+    },
+    isoToJpnDate(isoStr: string) {
+      const date = new Date(isoStr);
+      const displayDate = new Intl.DateTimeFormat("ja-jp", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(date);
+      return displayDate;
     },
   },
 });
