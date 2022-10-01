@@ -1,20 +1,23 @@
 <template>
-  <div>
+  <div class="pa-5">
     <h1>This is an about page{{ msg }}</h1>
-    <v-list-item v-for="(event, index) in events" :key="index">
-      <p>title:{{ event.title }}</p>
-      <p>url:{{ event.event_url }}</p>
-      <p>started_at:{{ event.started_at }}</p>
-      <p>address:{{ event.address }}</p>
-    </v-list-item>
+    <v-list v-for="(event, i) in events" :key="i" tile>
+      <event-card
+        :title="event.title"
+        :address="event.address"
+        :started_at="event.started_at"
+      ></event-card>
+    </v-list>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 import { eventListFromKeyword, SearchParam } from "@/helper/connpass";
+import EventCard from "@/components/EventCard.vue";
 
 export default defineComponent({
+  components: { EventCard },
   data() {
     return {
       loading: false,
