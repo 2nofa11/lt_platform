@@ -1,6 +1,6 @@
 <template>
   <div class="pa-5">
-    <h1>This is an about page{{ msg }}</h1>
+    <h1>Searching for 「{{ msg }}」</h1>
     <v-container>
       <v-row dense>
         <v-col v-for="(event, i) in events" :key="i">
