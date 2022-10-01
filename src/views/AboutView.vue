@@ -9,6 +9,7 @@
             :address="event.address"
             :started_at="isoToJpnDate(event.started_at)"
             :subtitle="event.catch"
+            :event_url="event.event_url"
           ></event-card>
         </v-col>
       </v-row>

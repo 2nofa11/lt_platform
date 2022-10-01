@@ -2,9 +2,9 @@
   <v-sheet rounded="lg">
     <v-list color="transparent">
       <v-list-item v-for="n in 5" :key="n" link>
-        <v-list-item-content @click="changeRoute('about', n)">
+        <div @click="changeRoute('about', n)">
           <v-list-item-title>List Item {{ n }}</v-list-item-title>
-        </v-list-item-content>
+        </div>
       </v-list-item>
     </v-list>
   </v-sheet>
