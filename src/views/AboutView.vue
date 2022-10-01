@@ -1,13 +1,18 @@
 <template>
   <div class="pa-5">
     <h1>This is an about page{{ msg }}</h1>
-    <v-list v-for="(event, i) in events" :key="i" tile>
-      <event-card
-        :title="event.title"
-        :address="event.address"
-        :started_at="event.started_at"
-      ></event-card>
-    </v-list>
+    <v-container>
+      <v-row dense>
+        <v-col v-for="(event, i) in events" :key="i">
+          <event-card
+            :title="event.title"
+            :address="event.address"
+            :started_at="event.started_at"
+            :subtitle="event.catch"
+          ></event-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 

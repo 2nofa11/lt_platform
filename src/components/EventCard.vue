@@ -1,25 +1,22 @@
 <template>
   <v-card class="mx-auto">
-    <v-list>
-      <v-subheader>{{ title }}</v-subheader>
-      <v-list-item>
-        <!-- 日時 -->
-        <v-list-item-icon>
-          <v-icon>{{ icons.clock }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ started_at }}</v-list-item-title>
-        </v-list-item-content>
-        <!-- 会場 -->
-        <v-list-item-icon>
-          <v-icon>{{ icons.address }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ address }}</v-list-item-title>
-        </v-list-item-content>
-        <!-- リンクへ遷移 -->
-      </v-list-item>
-    </v-list>
+    <v-card color="primary" class="mx-auto">
+      <div>
+        <v-card-title class="text-h5" v-text="title"></v-card-title>
+        <v-card-subtitle class="mb-1" v-text="subtitle"></v-card-subtitle>
+        <v-divider class="mx-2"></v-divider>
+        <v-col>
+          <v-row class="mb-4 mt-1">
+            <v-icon class="ml-5">{{ icons.clock }} </v-icon>
+            <span class="subheading ml-2">{{ started_at }}</span>
+          </v-row>
+          <v-row class="mb-1">
+            <v-icon class="ml-5">{{ icons.address }} </v-icon>
+            <span class="subheading ml-2">{{ address }}</span>
+          </v-row>
+        </v-col>
+      </div>
+    </v-card>
   </v-card>
 </template>
 
@@ -34,6 +31,7 @@ export default defineComponent({
     title: { type: String, required: true },
     started_at: { type: String, required: true },
     address: { type: String, required: true },
+    subtitle: { type: String, required: true },
   },
 });
 </script>
