@@ -1,4 +1,8 @@
-import { eventListFromKeyword, SearchParam } from "@/helper/connpass";
+import {
+  eventListFromKeyword,
+  SearchParam,
+  parmInfo_ThisMonth,
+} from "@/helper/connpass";
 
 describe("一覧取得", () => {
   it("使ってレスポンスがある", async () => {
@@ -27,5 +31,12 @@ describe("一覧取得", () => {
     const events = res.events;
     console.log(events);
     expect(events.length).toBe(10);
+  });
+});
+
+describe("parmInfo_ThisMonthのテスト", () => {
+  it.only("今月の入力がyyyymm形式で帰ってくる", () => {
+    const result = parmInfo_ThisMonth();
+    expect(result).toBe("202210");
   });
 });

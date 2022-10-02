@@ -2,6 +2,7 @@ import axios from "axios";
 export type SearchParam = {
   keyword: string;
   count: number;
+  // ym: string;
   [key: string]: string | number;
 };
 
@@ -19,7 +20,7 @@ export const eventListFromKeyword = async (searchParam: SearchParam) => {
   const reqParam = encodeURI(reqParamArr.join("&"));
   console.log(reqParam);
   const res = await axios.get(
-    `https://connpass.com/api/v1/event/?${reqParam}`,
+    `https://connpass.com/api/v1/event/?${reqParam}&order=2`,
     { adapter: jsonpAdapter }
   );
   return res.data;
@@ -27,3 +28,12 @@ export const eventListFromKeyword = async (searchParam: SearchParam) => {
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const jsonpAdapter = require("axios-jsonp");
+
+export const parmInfo_ThisMonth = () => {
+  const displayDate = new Intl.DateTimeFormat("ja-jp", {
+    year: "numeric",
+    month: "2-digit",
+  }).format(Date.now());
+  const yyyymm = displayDate.replace("/", "");
+  return String(yyyymm);
+};
