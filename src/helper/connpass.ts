@@ -2,7 +2,7 @@ import axios from "axios";
 export type SearchParam = {
   keyword: string;
   count: number;
-  // ym: string;
+  ym: string;
   [key: string]: string | number;
 };
 
