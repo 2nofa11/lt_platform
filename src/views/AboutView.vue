@@ -19,7 +19,11 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import { eventListFromKeyword, SearchParam } from "@/helper/connpass";
+import {
+  eventListFromKeyword,
+  SearchParam,
+  parmInfo_ThisMonth,
+} from "@/helper/connpass";
 import EventCard from "@/components/EventCard.vue";
 
 export default defineComponent({
@@ -51,7 +55,11 @@ export default defineComponent({
       this.error = this.post = null;
       this.loading = true;
       // 試しにAPIを取得する
-      const searchParam: SearchParam = { keyword: keyword, count: 10 };
+      const searchParam: SearchParam = {
+        keyword: keyword,
+        count: 30,
+        ym: parmInfo_ThisMonth(),
+      };
       eventListFromKeyword(searchParam).then((res) => {
         for (const [id, val] of Object.entries(res.events)) {
           this.events[id] = val;
