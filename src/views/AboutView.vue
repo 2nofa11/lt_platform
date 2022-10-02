@@ -6,7 +6,7 @@
         <v-col v-for="(event, i) in events" :key="i">
           <event-card
             :title="event.title"
-            :address="event.address"
+            :address="isAccessDefined(event.address)"
             :started_at="isoToJpnDate(event.started_at)"
             :subtitle="event.catch"
             :event_url="event.event_url"
@@ -58,6 +58,9 @@ export default defineComponent({
         }
       });
       this.loading = false;
+    },
+    isAccessDefined(address: string) {
+      return !address ? "記載なし" : address;
     },
     isoToJpnDate(isoStr: string) {
       const date = new Date(isoStr);
