@@ -1,6 +1,6 @@
 <template>
-  <v-card class="mx-auto">
-    <v-card color="primary" class="mx-auto">
+  <v-card>
+    <v-card color="primary" min-width="400" max-width="1200">
       <div>
         <v-card-title class="text-h5" v-text="title"></v-card-title>
         <v-card-subtitle class="mb-1" v-text="subtitle"></v-card-subtitle>
