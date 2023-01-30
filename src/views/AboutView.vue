@@ -1,6 +1,6 @@
 <template>
   <div class="pa-5">
-    <h1>Searching for 「{{ msg }}」</h1>
+    <h1>Searching for 「{{ keyword }}」</h1>
     <v-container>
       <v-row dense>
         <v-col v-for="(event, i) in events" :key="i">
@@ -28,6 +28,9 @@ import EventCard from "@/components/EventCard.vue";
 
 export default defineComponent({
   components: { EventCard },
+  props: {
+    keyword: String,
+  },
   data() {
     return {
       loading: false,
@@ -38,7 +41,7 @@ export default defineComponent({
   },
   computed: {
     msg: function () {
-      return this.$route.params.keyword as string;
+      return this.keyword as string;
     },
   },
   watch: {
@@ -50,13 +53,12 @@ export default defineComponent({
     this.fetchData(this.msg);
   },
   methods: {
-    fetchData(keyword: string) {
-      console.log(keyword);
+    fetchData(searchWord: string) {
       this.error = this.post = null;
       this.loading = true;
       // 試しにAPIを取得する
       const searchParam: SearchParam = {
-        keyword: keyword,
+        keyword: searchWord,
         count: 30,
         ym: parmInfo_ThisMonth(),
       };
