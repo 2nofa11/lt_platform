@@ -46,6 +46,7 @@ export default defineComponent({
   },
   watch: {
     msg: function (oldKey: string, newKey: string) {
+      this.events = [];
       this.fetchData(oldKey);
     },
   },

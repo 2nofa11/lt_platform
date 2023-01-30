@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "about",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-    props: true,
+    props: (route) => ({ keyword: route.params.keyword }),
   },
 ];
 
